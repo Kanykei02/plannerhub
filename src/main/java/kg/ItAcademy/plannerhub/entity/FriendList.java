@@ -20,11 +20,11 @@ public class FriendList {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "follower", nullable = false)
+    @JoinColumn(name = "follower_id", nullable = false)
     private User followerUser;
 
     @OneToOne
-    @JoinColumn(name = "followed", nullable = false)
+    @JoinColumn(name = "followed_id", nullable = false)
     private User followedUser;
 
     @Column(name = "date_folowed", nullable = false)
