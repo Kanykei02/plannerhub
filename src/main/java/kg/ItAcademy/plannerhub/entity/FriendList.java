@@ -21,11 +21,11 @@ public class FriendList {
 
     @ManyToOne
     @JoinColumn(name = "follower_id", nullable = false)
-    private User followerUser;
+    private FriendList followerUser;
 
     @ManyToOne
     @JoinColumn(name = "followed_id", nullable = false)
-    private User followedUser;
+    private FriendList followedUser;
 
     @Column(name = "date_folowed", nullable = false)
     private Date dateFollowed;
