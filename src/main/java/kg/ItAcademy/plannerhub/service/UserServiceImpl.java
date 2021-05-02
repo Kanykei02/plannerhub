@@ -39,9 +39,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> deleteAllUsers(){
-        User user = (User) getAllUsers();
+        List<User> user = getAllUsers();
         if(user != null){
-            userRepository.deleteAll((Iterable<? extends User>) user);
+            userRepository.deleteAll(user);
         }
         return null;
     }
