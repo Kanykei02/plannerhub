@@ -19,11 +19,11 @@ public class FriendList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "follower_id", nullable = false)
     private User followerUser;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "followed_id", nullable = false)
     private User followedUser;
 
