@@ -5,7 +5,7 @@ import kg.ItAcademy.plannerhub.entity.User;
 import java.util.List;
 
 public interface UserService {
-    User createOrUpdate(User user);
+    User save(User user);
     List<User> getAllUsers();
     User findById(Long id);
     User deleteById(Long id);

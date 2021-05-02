@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping
     public User createOrUpdate(@RequestBody User user){
-        return userService.createOrUpdate(user);
+        return userService.save(user);
     }
 
     @GetMapping("/{userId}")
@@ -38,5 +38,4 @@ public class UserController {
     public List<User> deleteAllUsers(){
         return userService.deleteAllUsers();
     }
-
 }
