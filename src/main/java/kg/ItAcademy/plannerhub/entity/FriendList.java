@@ -27,6 +27,6 @@ public class FriendList {
     @JoinColumn(name = "followed_id", nullable = false)
     private User followedUser;
 
-    @Column(name = "date_folowed", nullable = false)
+    @Column(name = "date_folowed")
     private Date dateFollowed;
 }
