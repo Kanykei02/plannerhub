@@ -19,11 +19,13 @@ public class Planner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "creator_id", nullable = false)
-    private Long creatorId;
+    @ManyToOne
+    @JoinColumn(name = "creator_id", referencedColumnName = "id", nullable = false)
+    private User creatorUser;
 
-    @Column(name = "guest_id")
-    private Long guestId;
+    @ManyToOne
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
+    private User guestUser;
 
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
