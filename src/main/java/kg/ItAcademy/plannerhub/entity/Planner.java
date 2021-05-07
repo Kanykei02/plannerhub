@@ -20,14 +20,14 @@ public class Planner {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "creator_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "creator_id", nullable = false)
     private User creatorUser;
 
     @ManyToOne
-    @JoinColumn(name = "guest_id", referencedColumnName = "id")
+    @JoinColumn(name = "guest_id")
     private User guestUser;
 
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "start_date")
     private LocalDateTime startDate;
 
     @Column(name = "end_date")

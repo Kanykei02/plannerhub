@@ -1,6 +1,7 @@
 package kg.ItAcademy.plannerhub.controller;
 
 import kg.ItAcademy.plannerhub.entity.FriendList;
+import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.service.FriendListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,8 @@ public class FriendListController {
     }
 
     @PostMapping
-    public FriendList createOrUpdate(@RequestBody FriendList friendList){
-        return friendListService.save(friendList);
+    public FriendList createOrUpdate(@RequestBody CreateFriendListModel friendListModel){
+        return friendListService.save(friendListModel);
     }
 
     @GetMapping("/{listId}")

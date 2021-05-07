@@ -1,6 +1,8 @@
 package kg.ItAcademy.plannerhub.service;
 
 import kg.ItAcademy.plannerhub.entity.Planner;
+import kg.ItAcademy.plannerhub.entity.User;
+import kg.ItAcademy.plannerhub.model.CreatePlannerModel;
 import kg.ItAcademy.plannerhub.repository.PlannerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,23 @@ public class PlannerServiceImpl implements PlannerService {
 
     @Autowired
     private PlannerRepository plannerRepository;
+    @Autowired
+    private UserService userService;
+
 
     @Override
-    public Planner save(Planner planner) {
+    public Planner save(CreatePlannerModel plannerModel) {
+        User user = userService.findById(plannerModel.getCreatorUser());
+        User user2 = userService.findById(plannerModel.getGuestUser());
+        if(user == null && user2 == null) return null;
+
+        Planner planner = Planner.builder()
+                .creatorUser(user)
+                .guestUser(user2)
+                .startDate(plannerModel.getStartDate())
+                .endDate(plannerModel.getEndDate())
+                .title(plannerModel.getTitle())
+                .info(plannerModel.getInfo()).build();
         return plannerRepository.save(planner);
     }
 
