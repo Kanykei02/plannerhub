@@ -54,12 +54,12 @@ public class PlannerServiceImpl implements PlannerService {
         return null;
     }
 
-    @Override
-    public List<Planner> deleteAllPlanners() {
-        List<Planner> planners = getAllPlanners();
-        if (planners != null) {
-            plannerRepository.deleteAll(planners);
-        }
-        return null;
-    }
+//    @Override
+//    public List<Planner> deleteAllPlanners() {
+//        List<Planner> planners = getAllPlanners();
+//        if (planners != null) {
+//            plannerRepository.deleteAll(planners);
+//        }
+//        return null;
+//    }
 }

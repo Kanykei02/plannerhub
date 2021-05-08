@@ -10,6 +10,5 @@ public interface PlannerService {
     List<Planner> getAllPlanners();
     Planner findById(Long id);
     Planner deleteById(Long id);
-    List<Planner> deleteAllPlanners();
-
+//    List<Planner> deleteAllPlanners();
 }

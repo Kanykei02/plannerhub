@@ -34,8 +34,8 @@ public class PlannerController {
         return plannerService.deleteById(plannerId);
     }
 
-    @DeleteMapping
-    public List<Planner> deleteAllPlanners() {
-        return plannerService.deleteAllPlanners();
-    }
+//    @DeleteMapping
+//    public List<Planner> deleteAllPlanners() {
+//        return plannerService.deleteAllPlanners();
+//    }
 }

@@ -1,6 +1,7 @@
 package kg.ItAcademy.plannerhub.controller;
 
 import kg.ItAcademy.plannerhub.entity.FriendList;
+import kg.ItAcademy.plannerhub.entity.User;
 import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.service.FriendListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class FriendListController {
     @GetMapping("/{listId}")
     public FriendList getById(@PathVariable Long listId){
         return friendListService.findById(listId);
+    }
+
+    @GetMapping()
+    public List<FriendList> getMyFriends(){
+        return friendListService.getMyFriends();
     }
 
     @DeleteMapping("/{listId}")

@@ -5,6 +5,7 @@ import kg.ItAcademy.plannerhub.entity.User;
 import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.repository.FriendListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,20 @@ public class FriendListServiceImpl implements FriendListService{
                     .build();
         return friendListRepository.save(friendList);
     }
+
+    @Override
+    public List<User> getMyFriends() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User user = userService.findByUsername(username);
+
+        List<User> followers;
+
+
+        return null;
+    }
+
+
 
     @Override
     public List<FriendList> getAllFollowers(){
@@ -59,4 +74,6 @@ public class FriendListServiceImpl implements FriendListService{
         }
         return null;
     }
+
+
 }

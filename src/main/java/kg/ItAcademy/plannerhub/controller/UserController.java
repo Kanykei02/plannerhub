@@ -19,11 +19,6 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping
-    public User createOrUpdate(@RequestBody User user){
-        return userService.save(user);
-    }
-
     @GetMapping("/{userId}")
     public User getById(@PathVariable Long userId){
         return userService.findById(userId);
@@ -37,5 +32,5 @@ public class UserController {
     @DeleteMapping
     public List<User> deleteAllUsers(){
         return userService.deleteAllUsers();
-    }
+    } // А нужен ли нам метод, чтобы удалять всех пользователей?
 }
