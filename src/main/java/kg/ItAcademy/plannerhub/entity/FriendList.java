@@ -30,7 +30,6 @@ public class FriendList {
     @Column(name = "date_followed")
     private Timestamp dateFollowed;
 
-
     public User getFollowers() {
         return this.followedUser;
     }

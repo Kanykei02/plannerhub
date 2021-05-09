@@ -1,7 +1,6 @@
 package kg.ItAcademy.plannerhub.model;
 
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +14,5 @@ import java.sql.Timestamp;
 public class CreateFriendListModel {
     private Long followerUserId;
     private Long followedUserId;
-    private Timestamp dateFollowed;;
+    private Timestamp dateFollowed;
 }

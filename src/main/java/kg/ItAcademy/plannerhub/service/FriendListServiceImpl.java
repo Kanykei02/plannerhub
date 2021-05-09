@@ -26,10 +26,10 @@ public class FriendListServiceImpl implements FriendListService{
         if(user == null && user2 == null) return null;
 
         FriendList friendList = FriendList.builder()
-                    .followerUser(user)
-                    .followedUser(user2)
-                    .dateFollowed(friendListModel.getDateFollowed())
-                    .build();
+                .followerUser(user)
+                .followedUser(user2)
+                .dateFollowed(friendListModel.getDateFollowed())
+                .build();
         return friendListRepository.save(friendList);
     }
 

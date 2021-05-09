@@ -44,4 +44,5 @@ public class FriendListController {
     public List<FriendList> deleteAllFollowers(){
         return friendListService.deleteAllFollowers();
     }
+
 }

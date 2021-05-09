@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface FriendListRepository extends JpaRepository<FriendList, Long> {
     List <FriendList> findByFollowerUser(User user);
+
 }
