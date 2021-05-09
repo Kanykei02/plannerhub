@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
@@ -15,5 +15,5 @@ import java.sql.Date;
 public class CreateFriendListModel {
     private Long followerUserId;
     private Long followedUserId;
-    private Date dateFollowed;
+    private Timestamp dateFollowed;;
 }

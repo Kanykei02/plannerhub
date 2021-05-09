@@ -32,7 +32,7 @@ public class FriendListController {
 
     @GetMapping()
     public List<User> getMyFollowers(){
-        return friendListService.getMyFriends();
+        return friendListService.getMyFollowers();
     }
 
     @DeleteMapping("/{listId}")
