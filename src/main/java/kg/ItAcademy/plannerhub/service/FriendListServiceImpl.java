@@ -2,6 +2,7 @@ package kg.ItAcademy.plannerhub.service;
 
 import kg.ItAcademy.plannerhub.entity.FriendList;
 import kg.ItAcademy.plannerhub.entity.User;
+import kg.ItAcademy.plannerhub.entity.UserRole;
 import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.repository.FriendListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +34,17 @@ public class FriendListServiceImpl implements FriendListService{
     }
 
     @Override
-    public List<User> getMyFriends() {
+    public List<User> getMyFollowers() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
         User user = userService.findByUsername(username);
+        List<FriendList> test = friendListRepository.findByFollowerUser(user);
+        List<User> test2 = null;
 
-        List<User> followers;
+        for (FriendList list : test)
+        { assert false; test2.add(list.getFollowers()); }
 
-
-        return null;
+        return test2;
     }
-
 
 
     @Override
@@ -74,6 +75,4 @@ public class FriendListServiceImpl implements FriendListService{
         }
         return null;
     }
-
-
 }

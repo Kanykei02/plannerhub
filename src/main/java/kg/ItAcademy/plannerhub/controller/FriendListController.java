@@ -31,7 +31,7 @@ public class FriendListController {
     }
 
     @GetMapping()
-    public List<FriendList> getMyFriends(){
+    public List<User> getMyFollowers(){
         return friendListService.getMyFriends();
     }
 
