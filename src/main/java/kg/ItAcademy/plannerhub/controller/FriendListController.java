@@ -30,10 +30,10 @@ public class FriendListController {
         return friendListService.findById(listId);
     }
 
-    @GetMapping()
-    public List<FriendList> getMyFriends(){
-        return friendListService.getMyFriends();
-    }
+//    @GetMapping()
+//    public List<FriendList> getMyFriends(){
+//        return friendListService.getMyFriends();
+//    }
 
     @DeleteMapping("/{listId}")
     public FriendList deleteById(@PathVariable Long listId){

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "friend_list")
@@ -28,5 +29,5 @@ public class FriendList {
     private User followedUser;
 
     @Column(name = "date_followed")
-    private Date dateFollowed;
+    private Timestamp dateFollowed;
 }
