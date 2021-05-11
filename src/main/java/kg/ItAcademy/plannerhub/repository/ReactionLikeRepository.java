@@ -1,9 +1,9 @@
 package kg.ItAcademy.plannerhub.repository;
 
-import kg.ItAcademy.plannerhub.entity.Reaction;
+import kg.ItAcademy.plannerhub.entity.ReactionLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReactionRepository extends JpaRepository<Reaction, Long> {
+public interface ReactionLikeRepository extends JpaRepository<ReactionLike, Long> {
 }
