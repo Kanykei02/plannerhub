@@ -20,4 +20,5 @@ public class CreatePlannerModel {
     private Timestamp endDate;
     private String title;
     private String info;
+    private Long status;
 }

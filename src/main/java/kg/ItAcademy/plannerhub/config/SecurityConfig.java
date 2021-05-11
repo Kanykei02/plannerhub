@@ -21,27 +21,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().anyRequest().permitAll()
-//                authorizeRequests()
-//                .antMatchers("/api/auth/**").permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
-//                .antMatchers(HttpMethod.POST, "/api/users/**").permitAll()
-//                .antMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.GET, "/api/list/**").permitAll()
-//                .antMatchers(HttpMethod.POST, "/api/list/**").permitAll()
-//                .antMatchers(HttpMethod.DELETE, "/api/list/**").hasAnyRole("USER", "ADMIN")
-//                .antMatchers(HttpMethod.POST, "/api/planner/**").hasAnyRole("USER", "ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/api/planner/**").hasAnyRole("USER", "ADMIN")
+        http.csrf().disable().
+                authorizeRequests()
+                .antMatchers("/api/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/users/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/list/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/list/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/list/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/planner/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/planner/**").hasAnyRole("USER", "ADMIN")
                 .and()
                 .httpBasic()
                 .and().logout().and().formLogin();
     }
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication().dataSource(dataSource)
-//                .usersByUsernameQuery("select username, password from users where username=?")
-//                .authoritiesByUsernameQuery("select u.username, ur.role_name from user_role ur join users u on ur.user_id = u.id where u.username=?");
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select username, password from users where username=?")
+                .authoritiesByUsernameQuery("select u.username, ur.role_name from user_role ur join users u on ur.user_id = u.id where u.username=? and status=1");
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
