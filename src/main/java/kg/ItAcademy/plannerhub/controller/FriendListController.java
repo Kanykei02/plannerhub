@@ -15,10 +15,10 @@ public class FriendListController {
     @Autowired
     private FriendListService friendListService;
 
-    @GetMapping
-    public List<FriendList> getAllFollowers(){
-        return friendListService.getAllFollowers();
-    }
+//    @GetMapping
+//    public List<FriendList> getAllFollowers(){
+//        return friendListService.getAllFollowers();
+//    }
 
     @PostMapping
     public FriendList createOrUpdate(@RequestBody CreateFriendListModel friendListModel){
@@ -30,7 +30,7 @@ public class FriendListController {
         return friendListService.findById(listId);
     }
 
-    @GetMapping()
+    @GetMapping("/my")
     public List<User> getMyFollowers(){
         return friendListService.getMyFollowers();
     }

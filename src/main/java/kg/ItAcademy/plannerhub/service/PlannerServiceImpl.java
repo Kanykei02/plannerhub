@@ -5,6 +5,7 @@ import kg.ItAcademy.plannerhub.entity.User;
 import kg.ItAcademy.plannerhub.model.CreatePlannerModel;
 import kg.ItAcademy.plannerhub.repository.PlannerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +21,11 @@ public class PlannerServiceImpl implements PlannerService {
 
     @Override
     public Planner save(CreatePlannerModel plannerModel) {
+      //  String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findById(plannerModel.getCreatorUser());
-        User user2 = userService.findById(plannerModel.getGuestUser());
-        if(user == null && user2 == null) return null;
+        User user2 = userService.findById(plannerModel.getGuestUser()); // убираем
+  //      if(user == null && user2 == null) return null;
+        
 
         Planner planner = Planner.builder()
                 .creatorUser(user)
@@ -31,6 +34,7 @@ public class PlannerServiceImpl implements PlannerService {
                 .endDate(plannerModel.getEndDate())
                 .title(plannerModel.getTitle())
                 .info(plannerModel.getInfo()).build();
+
         return plannerRepository.save(planner);
     }
 

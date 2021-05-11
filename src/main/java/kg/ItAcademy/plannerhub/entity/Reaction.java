@@ -26,11 +26,11 @@ public class Reaction {
     private ReactionTypeEnumModel reactionType;
 
     @ManyToOne
-    @JoinColumn(name = "planner_id", nullable = true) // Нужно будет добавть связь с id таблиц Planner
+    @JoinColumn(name = "planner_id")
     private Planner planner;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false) // Тоже связь
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "text")

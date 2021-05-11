@@ -2,13 +2,13 @@ package kg.ItAcademy.plannerhub.service;
 
 import kg.ItAcademy.plannerhub.entity.FriendList;
 import kg.ItAcademy.plannerhub.entity.User;
-import kg.ItAcademy.plannerhub.entity.UserRole;
 import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.repository.FriendListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -23,12 +23,11 @@ public class FriendListServiceImpl implements FriendListService{
     public FriendList save(CreateFriendListModel friendListModel){
         User user = userService.findById(friendListModel.getFollowerUserId());
         User user2 = userService.findById(friendListModel.getFollowedUserId());
-        if(user == null && user2 == null) return null;
 
         FriendList friendList = FriendList.builder()
                 .followerUser(user)
                 .followedUser(user2)
-                .dateFollowed(friendListModel.getDateFollowed())
+                .dateFollowed(new Timestamp(System.currentTimeMillis()))
                 .build();
         return friendListRepository.save(friendList);
     }
