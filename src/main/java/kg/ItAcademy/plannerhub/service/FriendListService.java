@@ -12,5 +12,6 @@ public interface FriendListService {
     FriendList findById(Long id);
     FriendList deleteById(Long id);
     List<FriendList> deleteAllFollowers();
-    List<User> getMyFriends();
+    List<User> getMyFollowers();
+
 }

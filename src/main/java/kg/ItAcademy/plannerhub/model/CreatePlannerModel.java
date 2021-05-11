@@ -1,6 +1,8 @@
 package kg.ItAcademy.plannerhub.model;
 
 import kg.ItAcademy.plannerhub.entity.User;
+
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class CreatePlannerModel {
     private Long creatorUser;
     private Long guestUser;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private Timestamp startDate;
+    private Timestamp endDate;
     private String title;
     private String info;
 }

@@ -41,4 +41,6 @@ public class User {
 
     @Column(name = "bio")
     private String bio;
+
+    // добавитьс статус
 }

@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.http.HttpMethod;
 
 import javax.sql.DataSource;
 
@@ -22,23 +21,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().
-                authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/list/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/list/**").hasRole("ADMIN") // -- Метод создания подписчиков. Добавил разрешение только одмену.
-                // Насколько это юзабельная штука для нас? возможно следует выпилить её
-                .antMatchers(HttpMethod.DELETE, "/api/list/**").hasAnyRole("USER", "ADMIN") // Тоже вопрос. Есть метод удалить по ИД - это норм, разрешается юзеру.
-                // Но есть метод удалить всех своих фолловеров, и следует ли давать юзеру право на это? Метод также под вопросом
-                .antMatchers(HttpMethod.POST, "/api/planner/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/api/planner/**").hasAnyRole("USER", "ADMIN") // Нужно переделать метод удаления по ИД/
-                // Во время удаления проверяется ИД криейтера, чтоб кто угодно не мог удалить задачу/планерку. Также добавить возможность админу. Метод удалить все планерки тоже наверн надо выпилить
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll()
+//                authorizeRequests()
+//                .antMatchers("/api/auth/**").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/users/**").permitAll()
+//                .antMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.GET, "/api/list/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/list/**").permitAll()
+//                .antMatchers(HttpMethod.DELETE, "/api/list/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers(HttpMethod.POST, "/api/planner/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/api/planner/**").hasAnyRole("USER", "ADMIN")
                 .and()
                 .httpBasic()
                 .and().logout().and().formLogin();
     }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.jdbcAuthentication().dataSource(dataSource)
+//                .usersByUsernameQuery("select username, password from users where username=?")
+//                .authoritiesByUsernameQuery("select u.username, ur.role_name from user_role ur join users u on ur.user_id = u.id where u.username=?");
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

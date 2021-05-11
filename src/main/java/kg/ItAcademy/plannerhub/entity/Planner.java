@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,10 +29,10 @@ public class Planner {
     private User guestUser;
 
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private Timestamp startDate;
 
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private Timestamp endDate;
 
     @Column(name = "title", nullable = false)
     private String title;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -22,28 +23,27 @@ public class FriendListServiceImpl implements FriendListService{
     public FriendList save(CreateFriendListModel friendListModel){
         User user = userService.findById(friendListModel.getFollowerUserId());
         User user2 = userService.findById(friendListModel.getFollowedUserId());
-        if(user == null && user2 == null) return null;
 
         FriendList friendList = FriendList.builder()
-                    .followerUser(user)
-                    .followedUser(user2)
-                    .dateFollowed(friendListModel.getDateFollowed())
-                    .build();
+                .followerUser(user)
+                .followedUser(user2)
+                .dateFollowed(new Timestamp(System.currentTimeMillis()))
+                .build();
         return friendListRepository.save(friendList);
     }
 
     @Override
-    public List<User> getMyFriends() {
+    public List<User> getMyFollowers() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
         User user = userService.findByUsername(username);
+        List<FriendList> test = friendListRepository.findByFollowerUser(user);
+        List<User> test2 = null;
 
-        List<User> followers;
+        for (FriendList list : test)
+        { assert false; test2.add(list.getFollowers()); }
 
-
-        return null;
+        return test2;
     }
-
 
 
     @Override
@@ -74,6 +74,4 @@ public class FriendListServiceImpl implements FriendListService{
         }
         return null;
     }
-
-
 }

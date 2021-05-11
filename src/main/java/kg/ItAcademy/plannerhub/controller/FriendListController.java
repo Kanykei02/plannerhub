@@ -15,10 +15,10 @@ public class FriendListController {
     @Autowired
     private FriendListService friendListService;
 
-    @GetMapping
-    public List<FriendList> getAllFollowers(){
-        return friendListService.getAllFollowers();
-    }
+//    @GetMapping
+//    public List<FriendList> getAllFollowers(){
+//        return friendListService.getAllFollowers();
+//    }
 
     @PostMapping
     public FriendList createOrUpdate(@RequestBody CreateFriendListModel friendListModel){
@@ -30,10 +30,10 @@ public class FriendListController {
         return friendListService.findById(listId);
     }
 
-//    @GetMapping()
-//    public List<FriendList> getMyFriends(){
-//        return friendListService.getMyFriends();
-//    }
+    @GetMapping("/my")
+    public List<User> getMyFollowers(){
+        return friendListService.getMyFollowers();
+    }
 
     @DeleteMapping("/{listId}")
     public FriendList deleteById(@PathVariable Long listId){
@@ -44,4 +44,5 @@ public class FriendListController {
     public List<FriendList> deleteAllFollowers(){
         return friendListService.deleteAllFollowers();
     }
+
 }
