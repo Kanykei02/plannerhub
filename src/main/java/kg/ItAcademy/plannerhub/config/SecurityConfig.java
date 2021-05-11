@@ -25,8 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/users/**").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.POST, "/api/users/*").permitAll()
+//                .antMatchers(HttpMethod.DELETE, "/api/users/**").hasAnyRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/list/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/list/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/api/list/**").hasAnyRole("USER", "ADMIN")
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username, password from users where username=?")
+                .usersByUsernameQuery("select username, password, status from users where username=?")
                 .authoritiesByUsernameQuery("select u.username, ur.role_name from user_role ur join users u on ur.user_id = u.id where u.username=? and status=1");
     }
 

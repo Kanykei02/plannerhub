@@ -30,7 +30,7 @@ public class FriendListController {
         return friendListService.findById(listId);
     }
 
-    @GetMapping("/my")
+    @GetMapping("/my/{listId}")
     public List<User> getMyFollowers(){
         return friendListService.getMyFollowers();
     }
