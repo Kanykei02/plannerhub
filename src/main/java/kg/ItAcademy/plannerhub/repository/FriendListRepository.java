@@ -9,6 +9,5 @@ import java.util.List;
 
 @Repository
 public interface FriendListRepository extends JpaRepository<FriendList, Long> {
-    List <FriendList> findByFollowerUser(User user);
-
+    List <FriendList> findAllByFollowerUser_Username(String username);
 }

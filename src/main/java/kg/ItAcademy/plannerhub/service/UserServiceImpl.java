@@ -5,6 +5,7 @@ import kg.ItAcademy.plannerhub.entity.UserRole;
 import kg.ItAcademy.plannerhub.model.AuthModel;
 import kg.ItAcademy.plannerhub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getAllUsers(){
+        System.out.println("Пользователь: " + SecurityContextHolder.getContext().getAuthentication().getName());
         return userRepository.findAll();
     }
 

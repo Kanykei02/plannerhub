@@ -5,6 +5,7 @@ import kg.ItAcademy.plannerhub.entity.User;
 import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.service.FriendListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +16,10 @@ public class FriendListController {
     @Autowired
     private FriendListService friendListService;
 
-//    @GetMapping
-//    public List<FriendList> getAllFollowers(){
-//        return friendListService.getAllFollowers();
-//    }
+    @GetMapping
+    public List<FriendList> getAllFollowers(){
+        return friendListService.getAllFollowers();
+    }
 
     @PostMapping
     public FriendList createOrUpdate(@RequestBody CreateFriendListModel friendListModel){
@@ -30,9 +31,10 @@ public class FriendListController {
         return friendListService.findById(listId);
     }
 
-    @GetMapping("/my/{listId}")
-    public List<User> getMyFollowers(){
-        return friendListService.getMyFollowers();
+    @GetMapping("/my")
+    public List<FriendList> findMyFollowers(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return friendListService.findAllByUsername(username);
     }
 
     @DeleteMapping("/{listId}")

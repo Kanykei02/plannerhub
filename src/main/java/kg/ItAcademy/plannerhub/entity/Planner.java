@@ -29,7 +29,7 @@ public class Planner {
     private User guestUser;
 
     @Column(name = "start_date")
-    private Timestamp startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "end_date")
     private Timestamp endDate;

@@ -4,6 +4,7 @@ import kg.ItAcademy.plannerhub.entity.Planner;
 import kg.ItAcademy.plannerhub.model.CreatePlannerModel;
 import kg.ItAcademy.plannerhub.service.PlannerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,10 +30,18 @@ public class PlannerController {
         return plannerService.findById(plannerId);
     }
 
+    @GetMapping("/my")
+    public List<Planner> findMyPlanners(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return plannerService.findAllByUsername(username);
+    }
+
     @DeleteMapping("/{plannerId}")
     public Planner deleteById(@PathVariable Long plannerId) {
         return plannerService.deleteById(plannerId);
     }
+
+
 
 //    @DeleteMapping
 //    public List<Planner> deleteAllPlanners() {

@@ -7,11 +7,12 @@ import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import java.util.List;
 
 public interface FriendListService {
+    FriendList save(FriendList friendList);
     FriendList save(CreateFriendListModel friendListModel);
     List<FriendList> getAllFollowers();
     FriendList findById(Long id);
     FriendList deleteById(Long id);
     List<FriendList> deleteAllFollowers();
-    List<User> getMyFollowers();
+    List<FriendList> findAllByUsername(String username);
 
 }

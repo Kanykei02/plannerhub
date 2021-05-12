@@ -14,11 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CreatePlannerModel {
-    private Long creatorUser;
     private Long guestUser;
-    private Timestamp startDate;
+    private LocalDateTime startDate;
     private Timestamp endDate;
     private String title;
     private String info;
-    private Long status;
 }

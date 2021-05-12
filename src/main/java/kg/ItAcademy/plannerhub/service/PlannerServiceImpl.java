@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,19 +19,18 @@ public class PlannerServiceImpl implements PlannerService {
     @Autowired
     private UserService userService;
 
+    @Override
+    public Planner save(Planner planner){
+        return plannerRepository.save(planner);
+    }
 
     @Override
     public Planner save(CreatePlannerModel plannerModel) {
-      //  String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.findById(plannerModel.getCreatorUser());
-        User user2 = userService.findById(plannerModel.getGuestUser()); // убираем
-  //      if(user == null && user2 == null) return null;
-        
-
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    User user = userService.findByUsername(username);
         Planner planner = Planner.builder()
                 .creatorUser(user)
-                .guestUser(user2)
-                .startDate(plannerModel.getStartDate())
+                .startDate(LocalDateTime.now())
                 .endDate(plannerModel.getEndDate())
                 .title(plannerModel.getTitle())
                 .info(plannerModel.getInfo()).build();
@@ -58,7 +58,12 @@ public class PlannerServiceImpl implements PlannerService {
         return null;
     }
 
-//    @Override
+    @Override
+    public List<Planner> findAllByUsername(String username) {
+        return plannerRepository.findAllByCreatorUser_Username(username);
+    }
+
+    //    @Override
 //    public List<Planner> deleteAllPlanners() {
 //        List<Planner> planners = getAllPlanners();
 //        if (planners != null) {

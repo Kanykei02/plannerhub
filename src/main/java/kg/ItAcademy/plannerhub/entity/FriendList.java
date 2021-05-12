@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "friend_list")
@@ -28,9 +28,9 @@ public class FriendList {
     private User followedUser;
 
     @Column(name = "date_followed")
-    private Timestamp dateFollowed;
+    private LocalDateTime dateFollowed;
 
-    public User getFollowers() {
-        return this.followedUser;
-    }
+//    public User getFollowers() {
+//        return this.followedUser;
+//    }
 }
