@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reaction_comment")
@@ -20,16 +20,16 @@ public class ReactionComment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "planner_id", nullable = true) // Нужно будет добавть связь с id таблиц Planner
-    private Planner planner;
+    @JoinColumn(name = "planner_id", nullable = false) // Нужно будет добавть связь с id таблиц Planner
+    private Planner plannerId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false) // Тоже связь
-    private User user;
+    @JoinColumn(name = "commentator", nullable = false) // Тоже связь
+    private User commentatorUser;
 
     @Column(name = "text")
     private String text;
 
     @Column(name = "date_created", nullable = false)
-    private Timestamp createdDate;
+    private LocalDateTime  createdDate;
 }

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reaction_like")
@@ -21,12 +21,12 @@ public class ReactionLike {
 
     @ManyToOne
     @JoinColumn(name = "planner_id", nullable = true) // Нужно будет добавть связь с id таблиц Planner
-    private Planner planner;
+    private Planner plannerId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false) // Тоже связь
     private User user;
 
     @Column(name = "date_created", nullable = false)
-    private Timestamp createdDate;
+    private LocalDateTime createdDate;
 }

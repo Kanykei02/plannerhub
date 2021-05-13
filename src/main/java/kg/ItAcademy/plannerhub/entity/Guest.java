@@ -1,5 +1,7 @@
 package kg.ItAcademy.plannerhub.entity;
 
+
+import jdk.vm.ci.meta.Local;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,24 +11,28 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "friend_list")
+@Table(name = "guest")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FriendList {
+public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "follower_id", nullable = false)
-    private User followerUser;
+    @Column(name = "planner_id", nullable = false)
+    private Planner plannerId;
 
     @ManyToOne
-    @JoinColumn(name = "followed_id", nullable = false)
-    private User followedUser;
+    @Column(name = "creator_id", nullable = false)
+    private User creatorId;
 
-    @Column(name = "date_followed")
-    private LocalDateTime dateFollowed;
+    @ManyToOne
+    @Column(name = "guest_id")
+    private User guestId;
+
+    @Column(name = "create_date")
+    private LocalDateTime createDate;
 }

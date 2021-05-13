@@ -1,6 +1,7 @@
 package kg.ItAcademy.plannerhub.controller;
 
 import kg.ItAcademy.plannerhub.entity.ReactionLike;
+import kg.ItAcademy.plannerhub.model.CreateLikeModel;
 import kg.ItAcademy.plannerhub.service.ReactionLikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,8 @@ public class ReactionLikeController {
     private ReactionLikeService ReactionLikeService;
 
     @PostMapping
-    public ReactionLike createOrUpdate(@RequestBody ReactionLike ReactionLike) {
-        return ReactionLikeService.save(ReactionLike);
+    public ReactionLike createOrUpdate(@RequestBody CreateLikeModel likeModel) {
+        return ReactionLikeService.save(likeModel);
     }
 
     @GetMapping
