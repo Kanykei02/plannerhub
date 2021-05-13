@@ -4,12 +4,14 @@ import kg.ItAcademy.plannerhub.entity.FriendList;
 import kg.ItAcademy.plannerhub.entity.User;
 import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.repository.FriendListRepository;
+import kg.ItAcademy.plannerhub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -25,23 +27,28 @@ public class FriendListServiceImpl implements FriendListService{
     }
 
     @Override
-    public FriendList save(CreateFriendListModel friendListModel){
+    public FriendList save(CreateFriendListModel friendListModel) throws Exception {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByUsername(username);
         User user2 = userService.findById(friendListModel.getFollowedUserId());
 
-        FriendList friendList = FriendList.builder()
-                .followerUser(user)
-                .followedUser(user2)
-                .dateFollowed(LocalDateTime.now())
-                .build();
-        return friendListRepository.save(friendList);
+        if(user != user2) {
+            FriendList friendList = FriendList.builder()
+                    .followerUser(user)
+                    .followedUser(user2)
+                    .dateFollowed(LocalDateTime.now())
+                    .build();
+            return friendListRepository.save(friendList);
+        }else{
+            throw new Exception("Вы не можете добавить себя в друзья");
+        }
     }
 
 //    @Override
 //    public List<User> getMyFollowers() {
 //        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 //        User user = userService.findByUsername(username);
+//
 //        List<FriendList> test = friendListRepository.findByFollowerUser(user);
 //        List<User> test2 = null;
 //

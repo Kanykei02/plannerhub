@@ -1,10 +1,13 @@
 package kg.ItAcademy.plannerhub.service;
 
 import kg.ItAcademy.plannerhub.entity.Tips;
+import kg.ItAcademy.plannerhub.entity.User;
 import kg.ItAcademy.plannerhub.repository.TipsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

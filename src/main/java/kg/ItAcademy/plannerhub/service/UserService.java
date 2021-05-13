@@ -6,7 +6,7 @@ import kg.ItAcademy.plannerhub.model.AuthModel;
 import java.util.List;
 
 public interface UserService {
-    User saveWithPasswordEncode(User user);
+    User saveWithPasswordEncode(User user) throws Exception;
     User save(User user);
     List<User> getAllUsers();
     User findById(Long id);

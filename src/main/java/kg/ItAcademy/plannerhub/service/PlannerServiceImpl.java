@@ -63,12 +63,4 @@ public class PlannerServiceImpl implements PlannerService {
         return plannerRepository.findAllByCreatorUser_Username(username);
     }
 
-    //    @Override
-//    public List<Planner> deleteAllPlanners() {
-//        List<Planner> planners = getAllPlanners();
-//        if (planners != null) {
-//            plannerRepository.deleteAll(planners);
-//        }
-//        return null;
-//    }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -30,7 +31,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User saveWithPasswordEncode(User user) {
+    public User saveWithPasswordEncode(User user) throws Exception {
+        Optional<User> userNameCheck = userRepository.findByUsername(user.getUsername());
+        Optional<User> userOpt = userRepository.findById(user.getId());
+        if (userNameCheck.isPresent()) {
+            throw new Exception("Такой логин уже существует");
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user = userRepository.save(user);
         UserRole userRole = new UserRole();
@@ -61,7 +68,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getAllUsers(){
-        System.out.println("Пользователь: " + SecurityContextHolder.getContext().getAuthentication().getName());
+        try {
+            System.out.println("Пользователь: " + SecurityContextHolder.getContext().getAuthentication().getName());
+        } catch (NullPointerException ignored){}
+
         return userRepository.findAll();
     }
 
@@ -69,6 +79,8 @@ public class UserServiceImpl implements UserService{
     public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+
+
 
     @Override
     public User deleteById(Long id){

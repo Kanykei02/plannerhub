@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface FriendListService {
     FriendList save(FriendList friendList);
-    FriendList save(CreateFriendListModel friendListModel);
+    FriendList save(CreateFriendListModel friendListModel) throws Exception;
     List<FriendList> getAllFollowers();
     FriendList findById(Long id);
     FriendList deleteById(Long id);

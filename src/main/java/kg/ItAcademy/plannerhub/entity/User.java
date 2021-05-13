@@ -44,4 +44,9 @@ public class User {
 
     @Column(name = "status")
     private Long status;
+
+    @Column(name = "tip_of_the_day")
+    private String tipOfTheDay;
+
+
 }

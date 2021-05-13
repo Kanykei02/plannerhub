@@ -22,7 +22,7 @@ public class FriendListController {
     }
 
     @PostMapping
-    public FriendList createOrUpdate(@RequestBody CreateFriendListModel friendListModel){
+    public FriendList createOrUpdate(@RequestBody CreateFriendListModel friendListModel) throws Exception {
         return friendListService.save(friendListModel);
     }
 
@@ -46,5 +46,4 @@ public class FriendListController {
     public List<FriendList> deleteAllFollowers(){
         return friendListService.deleteAllFollowers();
     }
-
 }
