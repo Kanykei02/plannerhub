@@ -4,6 +4,8 @@ import kg.ItAcademy.plannerhub.entity.FriendList;
 import kg.ItAcademy.plannerhub.entity.Guest;
 import kg.ItAcademy.plannerhub.entity.Planner;
 import kg.ItAcademy.plannerhub.entity.User;
+import kg.ItAcademy.plannerhub.exception.GuestException;
+import kg.ItAcademy.plannerhub.exception.PlannerException;
 import kg.ItAcademy.plannerhub.model.CreateGuestModel;
 import kg.ItAcademy.plannerhub.repository.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,10 @@ public class GuestServiceImpl implements GuestService{
         User user = userService.findByUsername(username);
         User user2 = userService.findById(guestModel.getGuestId());
         Planner planner = plannerService.findById(guestModel.getPlannerId());
+
+        if (user == user2) {
+            throw new GuestException("капец ексепшн");
+        }
 
         Guest guest = Guest.builder()
                 .createDate(LocalDateTime.now())

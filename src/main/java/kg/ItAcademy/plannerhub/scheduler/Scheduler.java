@@ -19,7 +19,7 @@ public class Scheduler {
     @Autowired
     private UserService userService;
 
-    @Scheduled(cron = "*/5 * * * * *")
+    @Scheduled(cron = "*/25 * * * * *")
     public void sayHello() {
         List<User> allUsers = userService.getAllUsers();
         Random rnd = new Random();

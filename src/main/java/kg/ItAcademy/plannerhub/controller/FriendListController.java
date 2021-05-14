@@ -5,6 +5,8 @@ import kg.ItAcademy.plannerhub.entity.User;
 import kg.ItAcademy.plannerhub.model.CreateFriendListModel;
 import kg.ItAcademy.plannerhub.service.FriendListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +24,13 @@ public class FriendListController {
     }
 
     @PostMapping
-    public FriendList createOrUpdate(@RequestBody CreateFriendListModel friendListModel) throws Exception {
-        return friendListService.save(friendListModel);
+    public ResponseEntity createOrUpdate(@RequestBody CreateFriendListModel friendListModel) {
+        try {
+            FriendList fLmodel = friendListService.save(friendListModel);
+            return new ResponseEntity<>(fLmodel, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
     }
 
     @GetMapping("/{listId}")
